@@ -1,0 +1,30 @@
+header{
+    border: 1px solid #000;
+    height: 96px;
+    width: 100%;
+    display: flex;
+    .logo{
+        cursor: pointer;
+        margin-right:6%;
+        &__img{
+            width: 100%;
+            display: block;
+        }
+    }
+    .nav{
+        width: 42%;
+        margin-right: auto;
+    }
+    .items{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .search{
+        &__input{
+            width: 416px;
+            height: 48px;
+            padding: 10px;
+        }
+    }
+}
