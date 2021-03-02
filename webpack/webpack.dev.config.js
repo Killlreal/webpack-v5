@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'eval-cheap-source-map',
     target: 'web',
     devServer: {
         // contentBase: common.externals.paths.dist,

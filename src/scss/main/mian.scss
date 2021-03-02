@@ -1,15 +1,21 @@
-main{
+main {
     height: 100%;
     display: flex;
     flex: 1 0 auto;
 }
-#hello{
+
+#hello {
     width: 100%;
     margin-top: 45px;
 }
 
-.main{
-    &__title{
+.main {
+    &__title {
         margin-bottom: 39px;
+    }
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 280px));
     }
 }

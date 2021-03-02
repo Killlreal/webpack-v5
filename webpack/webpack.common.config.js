@@ -10,11 +10,13 @@ const fs = require('fs');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PATHS = {
-    src: path.join(__dirname, '../src/'),
+    src: path.join(__dirname, '../src/js/'),
+    test: path.join(__dirname, '../src/pug/'),
+    about: path.join(__dirname, '../src/js/about.js'),
     dist: path.join(__dirname, '../dist'),
 }
 
-const PAGES_DIR = `${PATHS.src}`
+const PAGES_DIR = `${PATHS.test}`
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
 
@@ -24,10 +26,12 @@ module.exports = {
     },
 
     entry: {
-        app: PATHS.src
+        app: ['babel-polyfill', PATHS.src],
+        about: ['babel-polyfill', PATHS.about]
     },
     output: {
-        filename: `[name].[hash].js`,
+        filename: `js/[name].[hash].js`,
+        // publicPath: '/',
         path: PATHS.dist,
     },
     optimization: {
@@ -47,13 +51,13 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules)/,
                 use: {
                     loader: "babel-loader",
                     options: {
                         presets: ['@babel/preset-env'],
                         plugins: ['@babel/plugin-proposal-object-rest-spread',
-                            '@babel/plugin-proposal-class-properties']
+                            '@babel/plugin-proposal-class-properties', 'transform-regenerator']
                     }
                 }
             },
@@ -135,6 +139,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: `img/[name].[ext]`,
+                        publicPath: '../'
                     }
                 },
                 {
@@ -164,7 +169,8 @@ module.exports = {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'fonts/[name].[ext]'
+                    name: 'fonts/[name].[ext]',
+                    publicPath: '../'
                 }
             },
         ],
@@ -172,7 +178,7 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: `[name].[hash].css`
+            filename: `css/[name].[hash].css`
         }),
         new CleanWebpackPlugin(),
         ...PAGES.map(page => new HtmlWebpackPlugin({
@@ -195,10 +201,10 @@ module.exports = {
                 ],
             },
         }),
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: `${PATHS.src}/static`, to: `static` },
-            ],
-        }),
+        // new CopyWebpackPlugin({
+        //     patterns: [
+        //         { from: `${PATHS.src}/static`, to: `static` },
+        //     ],
+        // }),
     ],
 }
