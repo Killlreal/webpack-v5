@@ -1,21 +1,29 @@
-main {
-    height: 100%;
-    display: flex;
-    flex: 1 0 auto;
-}
-
-#hello {
+.vue {
     width: 100%;
-    margin-top: 45px;
-}
+    display: flex;
+    flex-direction: column;
 
-.main {
-    &__title {
-        margin-bottom: 39px;
+    &__img,
+    &__button,
+    &__background {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 600px;
+        margin-bottom: 20px;
     }
 
-    .products {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(220px, 280px));
+    .button{
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid blue;
+    }
+
+    .background {
+        border: 1px solid red;
+        width: 280px;
+        height: 160px;
+
+        background: url('../img/2.png') 50% 50% no-repeat;
     }
 }

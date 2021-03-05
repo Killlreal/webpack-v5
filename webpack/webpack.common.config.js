@@ -11,7 +11,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src/js/'),
-    test: path.join(__dirname, '../src/pug/'),
+    test: path.join(__dirname, '../src/'),
     about: path.join(__dirname, '../src/js/about.js'),
     dist: path.join(__dirname, '../dist'),
 }
@@ -27,13 +27,18 @@ module.exports = {
 
     entry: {
         app: ['babel-polyfill', PATHS.src],
-        about: ['babel-polyfill', PATHS.about]
+        about: [PATHS.about]
     },
     output: {
         filename: `js/[name].[hash].js`,
         // publicPath: '/',
         path: PATHS.dist,
     },
+    // resolve: {
+    //     alias: {
+    //         '@': path.resolve(__dirname, '../dist'),
+    //     },
+    // },
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -67,7 +72,7 @@ module.exports = {
                 options: {
                     loader: {
                         scss: 'vue-style-loader!css-loader!sass-loader'
-                    }
+                    },
                 }
             },
             {
@@ -139,6 +144,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: `img/[name].[ext]`,
+                        esModule: false,
                         publicPath: '../'
                     }
                 },
@@ -183,8 +189,10 @@ module.exports = {
         new CleanWebpackPlugin(),
         ...PAGES.map(page => new HtmlWebpackPlugin({
             template: `${PAGES_DIR}/${page}`,
-            filename: `./${page.replace(/\.pug/, '.html')}`
+            filename: `./${page.replace(/\.pug/, '.html')}`,
+            chunks: ['app']
         })),
+        //https://coderoad.ru/39798095/%D0%9D%D0%B5%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE-%D1%84%D0%B0%D0%B9%D0%BB%D0%BE%D0%B2-html-%D1%81-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%D0%BC-webpack
         new ImageMinimizerPlugin({
             minimizerOptions: {
                 plugins: [
@@ -203,7 +211,7 @@ module.exports = {
         }),
         // new CopyWebpackPlugin({
         //     patterns: [
-        //         { from: `${PATHS.src}/static`, to: `static` },
+        //         { from: `${PATHS.test}/img`, to: `img` },
         //     ],
         // }),
     ],

@@ -6,9 +6,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
     body 
-        include ./header/header.pug
-        main 
-            #app
-            a(href="about.html") to about
-            include ./index/main/main.pug
-        include ./footer/footer.pug
+        include ./pug/header/header.pug
+        main
+            include ./pug/index/index.pug
+        include ./pug/footer/footer.pug
