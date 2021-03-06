@@ -1,1 +1,2 @@
-import '../scss/index.scss';
+import '../scss/about.scss';
+console.log('hqqqqqqqqqqqqqqqqqqq');
