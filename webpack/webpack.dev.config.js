@@ -7,7 +7,7 @@ module.exports = merge(common, {
     devtool: 'eval-cheap-source-map',
     target: 'web',
     devServer: {
-        // contentBase: common.externals.paths.dist,
+        contentBase: common.externals.paths.test,
         historyApiFallback: true,
         open: true,
         compress: true,

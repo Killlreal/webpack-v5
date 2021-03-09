@@ -1,4 +1,5 @@
-if (module && module.hot) module.hot.accept()
+// if (module && module.hot) module.hot.accept()
+console.log('26');
 import './main';
 import '../scss/index.scss';
 import '../img/1.png';

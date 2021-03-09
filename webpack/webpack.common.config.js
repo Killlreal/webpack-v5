@@ -30,7 +30,7 @@ module.exports = {
         about: [PATHS.about]
     },
     output: {
-        filename: `js/[name].[hash].js`,
+        filename: `js/[name].[chunkhash].js`,
         path: PATHS.dist,
     },
     optimization: {
@@ -137,7 +137,7 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: `img/[name].[ext]`,
+                        name: `img/[name].[hash].[ext]`,
                         esModule: false,
                         publicPath: '../'
                     }
@@ -178,18 +178,18 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: `css/[name].[hash].css`
+            filename: `css/[name].[chunkhash].css`
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: `src/index.pug`,
             filename: `${`index.pug`.replace(/\.pug/, '.html')}`,
-            chunks: ['app']
+            chunks: ['app'],
         }),
         new HtmlWebpackPlugin({
             template: `src/about.pug`,
             filename: `${`about.pug`.replace(/\.pug/, '.html')}`,
-            chunks: ['about']
+            chunks: ['about'],
         }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
