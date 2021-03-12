@@ -8,13 +8,20 @@ const webpack = require('webpack');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const fs = require('fs');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src/js/'),
     about: path.join(__dirname, '../src/js/about.js'),
+    tut: path.join(__dirname, '../src/js/tut.js'),
     dist: path.join(__dirname, '../dist'),
     test: path.join(__dirname, '../src/'),
 }
+
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
 
 const PAGES_DIR = `${PATHS.test}`
 const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
@@ -27,11 +34,13 @@ module.exports = {
 
     entry: {
         app: ['babel-polyfill', PATHS.src],
-        about: [PATHS.about]
+        about: [PATHS.about],
+        tut: [PATHS.tut]
     },
     output: {
-        filename: `js/[name].[chunkhash].js`,
+        filename: `./js/${filename('js')}`,
         path: PATHS.dist,
+        publicPath: ''
     },
     optimization: {
         splitChunks: {
@@ -72,11 +81,11 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    {
+                    isDev ? 'style-loader' : {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: '',
-                        },
+                            publicPath: '../'
+                        }
                     },
                     'css-loader',
                     {
@@ -96,11 +105,11 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/,
                 use: [
-                    {
+                    isDev ? 'style-loader' : {
                         loader: MiniCssExtractPlugin.loader,
                         options: {
-                            publicPath: '',
-                        },
+                            publicPath: '../'
+                        }
                     },
                     'css-loader',
                     {
@@ -119,6 +128,10 @@ module.exports = {
                 ]
             },
             {
+                test: /\.html$/,
+                loader: 'html-loader'
+            },
+            {
                 test: /\.pug$/,
                 oneOf: [
                     // this applies to <template lang="pug"> in Vue components
@@ -133,13 +146,13 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/,
+                test: /\.(?:png|svg|jpg|jpeg|gif)$/,
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: `img/[name].[hash].[ext]`,
-                        esModule: false,
-                        publicPath: '../'
+                        name: `./img/${filename('[ext]')}`,
+                        // esModule: false,
+                        //publicPath: '../'
                     }
                 },
                 {
@@ -178,19 +191,25 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin(),
         new MiniCssExtractPlugin({
-            filename: `css/[name].[chunkhash].css`
+            filename: `./css/${filename('css')}`
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: `src/index.pug`,
-            filename: `${`index.pug`.replace(/\.pug/, '.html')}`,
+            filename: `index.html`,
             chunks: ['app'],
         }),
         new HtmlWebpackPlugin({
             template: `src/about.pug`,
-            filename: `${`about.pug`.replace(/\.pug/, '.html')}`,
+            filename: `about.html`,
             chunks: ['about'],
         }),
+        new HtmlWebpackPlugin({
+            template: `src/tut.html`,
+            filename: `tut.html`,
+            chunks: ['tut'],
+        }),
+        new HtmlWebpackPugPlugin(),
         new ImageMinimizerPlugin({
             minimizerOptions: {
                 plugins: [
