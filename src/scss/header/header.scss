@@ -1,26 +1,32 @@
 header{
-    border: 10px solid rgb(169, 3, 252);
-    height: 96px;
-    width: 100%;
     display: flex;
+    width: 100%;
+    height: 96px;
+    border: 10px solid rgb(169, 3, 252);
+
     .logo{
+        margin-right: 6%;
         cursor: pointer;
-        margin-right:6%;
+
         &__img{
-            width: 100%;
             display: block;
+            width: 100%;
         }
     }
+
     .nav{
         width: 42%;
         margin-right: auto;
     }
+
     .items{
-        width: 100%;
         display: flex;
         justify-content: space-between;
+        width: 100%;
     }
+
     .search{
+
         &__input{
             width: 416px;
             height: 48px;

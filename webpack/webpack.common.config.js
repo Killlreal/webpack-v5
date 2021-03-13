@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const fs = require('fs');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src/js/'),
@@ -221,5 +222,10 @@ module.exports = {
                 { from: `${PATHS.test}/static`, to: `static` },
             ],
         }),
+        new StylelintPlugin({
+            configFile: path.resolve(__dirname, '../stylelint.config.js'),
+            context: path.resolve(__dirname, '../src/scss'),
+            files: '**/*.scss',
+        })
     ],
 }

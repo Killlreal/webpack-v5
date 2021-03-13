@@ -1,43 +1,44 @@
 *,
-*:before,
-*:after {
-  box-sizing: border-box;
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-ul[class],
-ol[class] {
-  list-style: none;
-}
+// ul[ class ],
+// ol[ class ] {
+//     list-style: none;
+// }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
+    font: inherit;
 }
 
 body{
-    font-family: 'FuturaBookC';
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     color: $dark;
+    font-family: FuturaBookC;
 }
 
 .wrapper{
     width: 64%;
     margin: 0 auto;
-    border: 1px solid red;
+    border: 1px solid #f00;
+
     &__position_center{
         display: flex;
         align-items: center;
