@@ -8,12 +8,10 @@ const webpack = require('webpack');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const fs = require('fs');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src/js/'),
     about: path.join(__dirname, '../src/js/about.js'),
-    tut: path.join(__dirname, '../src/js/tut.js'),
     dist: path.join(__dirname, '../dist'),
     test: path.join(__dirname, '../src/'),
 }
@@ -35,7 +33,6 @@ module.exports = {
     entry: {
         app: ['babel-polyfill', PATHS.src],
         about: [PATHS.about],
-        tut: [PATHS.tut]
     },
     output: {
         filename: `./js/${filename('js')}`,
@@ -141,7 +138,7 @@ module.exports = {
                     },
                     // this applies to pug imports inside JavaScript
                     {
-                        use: ['pug-loader']
+                        use: ['html-loader', 'pug-html-loader']
                     }
                 ]
             },
@@ -151,8 +148,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: `./img/${filename('[ext]')}`,
-                        // esModule: false,
-                        //publicPath: '../'
+                        esModule: false,
                     }
                 },
                 {
@@ -196,20 +192,14 @@ module.exports = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: `src/index.pug`,
-            filename: `index.html`,
+            filename: `${`index.pug`.replace(/\.pug/, '.html')}`,
             chunks: ['app'],
         }),
         new HtmlWebpackPlugin({
             template: `src/about.pug`,
-            filename: `about.html`,
+            filename: `${`about.pug`.replace(/\.pug/, '.html')}`,
             chunks: ['about'],
         }),
-        new HtmlWebpackPlugin({
-            template: `src/tut.html`,
-            filename: `tut.html`,
-            chunks: ['tut'],
-        }),
-        new HtmlWebpackPugPlugin(),
         new ImageMinimizerPlugin({
             minimizerOptions: {
                 plugins: [
