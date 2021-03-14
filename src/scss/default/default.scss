@@ -25,7 +25,7 @@ select {
     font: inherit;
 }
 
-body{
+body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -34,12 +34,12 @@ body{
     font-family: FuturaBookC;
 }
 
-.wrapper{
+.wrapper {
     width: 64%;
     margin: 0 auto;
     border: 1px solid #f00;
 
-    &__position_center{
+    &__position_center {
         display: flex;
         align-items: center;
         width: 100%;
