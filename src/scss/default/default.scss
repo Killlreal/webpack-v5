@@ -10,19 +10,13 @@
 }
 
 a {
+    color: inherit;
     text-decoration: none;
 }
 
-// ul[ class ],
-// ol[ class ] {
-//     list-style: none;
-// }
-
-input,
-button,
-textarea,
-select {
-    font: inherit;
+ul[ class ],
+ol[ class ] {
+    list-style-type: none;
 }
 
 body {
