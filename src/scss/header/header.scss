@@ -1,33 +1,33 @@
-header{
+header {
     display: flex;
     width: 100%;
     height: 96px;
     border: 10px solid rgb(169, 3, 252);
 
-    .logo{
+    .logo {
         margin-right: 6%;
         cursor: pointer;
 
-        &__img{
+        &__img {
             display: block;
             width: 100%;
         }
     }
 
-    .nav{
+    .nav {
         width: 42%;
         margin-right: auto;
     }
 
-    .items{
+    .items {
         display: flex;
         justify-content: space-between;
         width: 100%;
     }
 
-    .search{
+    .search {
 
-        &__input{
+        &__input {
             width: 416px;
             height: 48px;
             padding: 10px;
