@@ -2,7 +2,7 @@
 #hello
     .vue
     .vue__img
-        img(src="../img/1.png", alt="First") 
+        img(src="../assets/img/1.png", alt="First") 
         h1 img in vue
     .vue__button
         .button(@click="clickAdd") {{ message }}
