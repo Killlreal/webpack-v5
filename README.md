@@ -25,7 +25,7 @@ Also you need to install [Stylelint plugin](https://marketplace.visualstudio.com
 
 Now you can press CTRL + S and your css code will rebuild:
 
-![stylelint](./src/img/stylelint.gif)
+![stylelint](./src/assets/img/stylelint.gif)
 
 If you want to see more information abot stylelint visit this [article](https://bzvyagintsev.ru/blog/stylelint/).
 
