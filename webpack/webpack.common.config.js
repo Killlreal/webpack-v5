@@ -11,8 +11,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 
 const PATHS = {
-    src: path.join(__dirname, "../src/js/"),
-    about: path.join(__dirname, "../src/js/about.js"),
+    src: path.join(__dirname, "../src/scripts/"),
     dist: path.join(__dirname, "../dist"),
     test: path.join(__dirname, "../src/"),
 };
@@ -35,10 +34,9 @@ module.exports = {
 
     entry: {
         app: ["babel-polyfill", PATHS.src],
-        about: [PATHS.about],
     },
     output: {
-        filename: `./js/${filename("js")}`,
+        filename: `./scripts/${filename("js")}`,
         path: PATHS.dist,
         publicPath: "",
     },
@@ -194,14 +192,9 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: `src/index.pug`,
+            template: `src/pages/index.pug`,
             filename: `${`index.pug`.replace(/\.pug/, ".html")}`,
             chunks: ["app"],
-        }),
-        new HtmlWebpackPlugin({
-            template: `src/about.pug`,
-            filename: `${`about.pug`.replace(/\.pug/, ".html")}`,
-            chunks: ["about"],
         }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
@@ -226,7 +219,7 @@ module.exports = {
         }),
         new StylelintPlugin({
             configFile: path.resolve(__dirname, "../stylelint.config.js"),
-            context: path.resolve(__dirname, "../src/scss"),
+            context: path.resolve(__dirname, "../src/styles"),
             files: "**/*.scss",
         }),
     ],
