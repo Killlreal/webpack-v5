@@ -1,8 +1,8 @@
 module.exports = {
     extends: ["stylelint-config-rational-order"],
     plugins: ["stylelint-order", "stylelint-scss"],
-    "rules": {
-        "indentation": 4,
+    rules: {
+        indentation: 4,
         "string-quotes": "single",
         "no-duplicate-selectors": true,
         "color-hex-case": "lower",
@@ -21,7 +21,7 @@ module.exports = {
         "number-leading-zero": "always",
         "function-url-quotes": "always",
         "font-weight-notation": "numeric",
-        "font-family-name-quotes": "always-where-required",
+        "font-family-name-quotes": "always-where-recommended",
         "comment-whitespace-inside": "always",
         "comment-empty-line-before": "always",
         "at-rule-no-vendor-prefix": true,
@@ -34,6 +34,6 @@ module.exports = {
         "media-feature-parentheses-space-inside": "always",
         "media-feature-name-no-vendor-prefix": true,
         "media-feature-colon-space-before": "never",
-        "media-feature-colon-space-after": "always"
-    }
+        "media-feature-colon-space-after": "always",
+    },
 };
