@@ -1,7 +1,3 @@
-import '../scss/about.scss';
-import '../about.pug';
-console.log('hqqqqqqqqqqqqqqqqqqq');
-function clearMap(){
-    console.log('red');
-}
-let huck = 23;
+import "./parts/main";
+import "../styles/index.scss";
+import "../pages/about.pug";

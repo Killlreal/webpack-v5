@@ -11,9 +11,10 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 
 const PATHS = {
-    src: path.join(__dirname, "../src/scripts/"),
+    index: path.join(__dirname, "../src/scripts/"),
+    about: path.join(__dirname, "../src/scripts/about.js"),
+    src: path.join(__dirname, "../src/"),
     dist: path.join(__dirname, "../dist"),
-    test: path.join(__dirname, "../src/"),
 };
 
 const isDev = process.env.NODE_ENV === "development";
@@ -22,7 +23,7 @@ const isProd = !isDev;
 const filename = (ext) =>
     isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`;
 
-const PAGES_DIR = `${PATHS.test}`;
+const PAGES_DIR = `${PATHS.src}`;
 const PAGES = fs
     .readdirSync(PAGES_DIR)
     .filter((fileName) => fileName.endsWith(".pug"));
@@ -33,7 +34,8 @@ module.exports = {
     },
 
     entry: {
-        app: ["babel-polyfill", PATHS.src],
+        app: ["babel-polyfill", PATHS.index],
+        about: [PATHS.about],
     },
     output: {
         filename: `./scripts/${filename("js")}`,
@@ -196,6 +198,11 @@ module.exports = {
             filename: `${`index.pug`.replace(/\.pug/, ".html")}`,
             chunks: ["app"],
         }),
+        new HtmlWebpackPlugin({
+            template: `src/pages/about.pug`,
+            filename: `${`about.pug`.replace(/\.pug/, ".html")}`,
+            chunks: ["about"],
+        }),
         new ImageMinimizerPlugin({
             minimizerOptions: {
                 plugins: [
@@ -214,7 +221,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: `${PATHS.test}/assets/static`, to: `assets/static` },
+                { from: `${PATHS.src}/assets/static`, to: `assets/static` },
             ],
         }),
         new StylelintPlugin({

@@ -1,5 +1,6 @@
-@import '~normalize.css';
 @import './parts/fonts';
+@import '~normalize.css';
+@import '~bootstrap/scss/bootstrap';
 @import './parts/vars';
 @import './parts/rest';
 @import '../blocks/header/header';
