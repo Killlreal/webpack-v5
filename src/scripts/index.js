@@ -4,10 +4,10 @@ import '../styles/index.scss';
 import '../pages/index.pug';
 
 
-// import Vue from 'vue'
-// import App from '../vue/app.vue'
+import Vue from 'vue'
+import App from '../vue/app.vue'
 
-// new Vue({
-//     el: '#app',
-//     render: h => h(App)
-// })
+new Vue({
+    el: '#app',
+    render: h => h(App)
+})

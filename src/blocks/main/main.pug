@@ -1,21 +1,32 @@
-.wrapper
-    a(href="about.html") to about 
-    .block
-    img(src="../assets/img/4.png", alt="")
-    ul.task__list
-        li.task__item
-            a.link(href="#") text 1
-        li.task__item
-            a.link(href="#") text 2
-        li.task__item
-            a.link(href="#") text 3
-    ul.task__list
-        li.task__item
-            a.link(href="#") text 1
-        li.task__item
-            a.link(href="#") text 2
-        li.task__item
-            a.link(href="#") text 3
-    section.button__example 
-        article.button__block
-            .example
+//- .wrapper
+//-     a(href="about.html") to about 
+//-     .block
+//-     img(src="../assets/img/4.png", alt="")
+//-     ul.task__list
+//-         li.task__item
+//-             a.link(href="#") text 1
+//-         li.task__item
+//-             a.link(href="#") text 2
+//-         li.task__item
+//-             a.link(href="#") text 3
+//-     ul.task__list
+//-         li.task__item
+//-             a.link(href="#") text 1
+//-         li.task__item
+//-             a.link(href="#") text 2
+//-         li.task__item
+//-             a.link(href="#") text 3
+//-     section.button__example 
+//-         article.button__block
+//-             .example
+.container 
+    .row
+        .col-sm-2
+            h1 left
+        .col
+            h1 center
+        .col-auto
+            h1 right
+.container-fluid
+#app
+include ../customers/customers
