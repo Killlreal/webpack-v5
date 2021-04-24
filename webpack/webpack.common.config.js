@@ -140,7 +140,7 @@ module.exports = {
                     },
                     // this applies to pug imports inside JavaScript
                     {
-                        use: ["html-loader", "pug-html-loader"],
+                        use: ['pug-loader']
                     },
                 ],
             },
