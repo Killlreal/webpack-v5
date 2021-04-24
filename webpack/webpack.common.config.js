@@ -140,7 +140,7 @@ module.exports = {
                     },
                     // this applies to pug imports inside JavaScript
                     {
-                        use: ['pug-loader']
+                        use: ["pug-loader"],
                     },
                 ],
             },
@@ -164,7 +164,7 @@ module.exports = {
                                 enabled: false,
                             },
                             pngquant: {
-                                quality: [0.65, 0.9],
+                                quality: 65 - 90,
                                 speed: 4,
                             },
                             gifsicle: {
