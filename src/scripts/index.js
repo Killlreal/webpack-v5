@@ -1,7 +1,6 @@
 // if (module && module.hot) module.hot.accept()
 import './parts/main';
 import '../styles/index.scss';
-import '../pages/index.pug';
 
 
 import Vue from 'vue'
