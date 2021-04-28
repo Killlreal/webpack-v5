@@ -131,20 +131,6 @@ module.exports = {
                 loader: "html-loader",
             },
             {
-                test: /\.pug$/,
-                oneOf: [
-                    // this applies to <template lang="pug"> in Vue components
-                    {
-                        resourceQuery: /^\?vue/,
-                        use: ["pug-plain-loader"],
-                    },
-                    // this applies to pug imports inside JavaScript
-                    {
-                        use: ["pug-loader"],
-                    },
-                ],
-            },
-            {
                 test: /\.(?:png|svg|jpg|jpeg|gif)$/,
                 use: [
                     {
@@ -164,7 +150,7 @@ module.exports = {
                                 enabled: false,
                             },
                             pngquant: {
-                                quality: 65 - 90,
+                                quality: [0.65 ,0.9],
                                 speed: 4,
                             },
                             gifsicle: {
