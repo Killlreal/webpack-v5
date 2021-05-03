@@ -140,6 +140,11 @@ module.exports = {
                             esModule: false,
                         },
                     },
+                ],
+            },
+            {
+                test: /\.(?:png|jpg|jpeg|gif)$/,
+                use: [
                     {
                         loader: "image-webpack-loader",
                         options: {
@@ -164,7 +169,7 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "file-loader",
                 options: {
                     name: "assets/fonts/[name].[ext]",
@@ -188,22 +193,6 @@ module.exports = {
             template: `src/pages/about.pug`,
             filename: `${`about.pug`.replace(/\.pug/, ".html")}`,
             chunks: ["about"],
-        }),
-        new ImageMinimizerPlugin({
-            minimizerOptions: {
-                plugins: [
-                    [
-                        "svgo",
-                        {
-                            plugins: [
-                                {
-                                    removeViewBox: false,
-                                },
-                            ],
-                        },
-                    ],
-                ],
-            },
         }),
         new CopyWebpackPlugin({
             patterns: [
