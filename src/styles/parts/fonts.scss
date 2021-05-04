@@ -1,35 +1,5 @@
 @font-face {
-    font-weight: 400;
-    font-family: 'Gilroy Regular';
-    font-style: normal;
-    src: local('Gilory Regular'),local('Gilory-Regular'),
-        url('../assets/fonts/Gilroy-Regular.woff2') format('woff2'),
-        url('../assets/fonts/Gilroy-Regular.woff') format('woff'); 
-}
-
-@font-face {
-    font-weight: 700;
-    font-family: 'Gilroy Bold';
-    font-style: normal;
-    src: local('Gilory Bold'),local('Gilory-Bold'),
-        url('../assets/fonts/Gilroy-Bold.woff2') format('woff2'),
-        url('../assets/fonts/Gilroy-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-weight: 400;
-    font-family: 'PT Serif';
-    font-style: normal;
-    src: local('PT Serif Regular'),local('PT-Serif-Regular'),
-        url('../assets/fonts/pt-serif-v12-latin-regular.woff2') format('woff2'),
-        url('../assets/fonts/pt-serif-v12-latin-regular.woff') format('woff');
-}
-
-@font-face {
-    font-weight: 700;
-    font-family: 'PT Serif';
-    font-style: normal;
-    src: local('PT Serif Bold'),local('PT-Serif-Bold'),
-        url('../assets/fonts/pt-serif-v12-latin-700.woff2') format('woff2'),
-        url('../assets/fonts/pt-serif-v12-latin-700.woff') format('woff');
+    font-family: FuturaBookC;
+    src: url('../assets/fonts/futurabookc.woff2') format('woff2'),
+        url('../assets/fonts/futurabookc.woff') format('woff');
 }

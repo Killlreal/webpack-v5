@@ -11,7 +11,7 @@
                 h3.vue-text background in vue 
             .vue-wrapper
                 svg.vue-svg(width=180 height=180)
-                    use(xlink:href="../assets/img/sprite.svg#i-cart")
+                    use(xlink:href="../assets/img/icons/sprite.svg#i-cart")
                 h3.vue-text svg use  in vue 
             .vue-wrapper
                 img.vue-img(src='../assets/img/icons/loyalty.svg')

@@ -173,8 +173,8 @@ module.exports = {
                 test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: "file-loader",
                 options: {
-                    name: "assets/fonts/[name].[ext]",
-                    publicPath: "../",
+                    name: "[name].[ext]",
+                    outputPath: 'assets/fonts',
                 },
             },
         ],
