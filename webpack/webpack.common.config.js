@@ -136,8 +136,9 @@ module.exports = {
                     {
                         loader: "file-loader",
                         options: {
-                            name: `./assets/img/${filename("[ext]")}`,
+                            name: `${filename("[ext]")}`,
                             esModule: false,
+                            outputPath: 'assets/img',
                         },
                     },
                 ],

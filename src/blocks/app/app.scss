@@ -1,0 +1,30 @@
+.vue {
+
+    &__title {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    &-wrapper{
+        @include display-flex(row, center, flex-start);
+    }
+
+    &-text {
+        margin-left: 20px;
+    }
+
+    &-img {
+        width: 280px;
+    }
+
+    &-svg {
+        fill: rgb(24, 221, 172);
+    }
+
+    &-background {
+        width: 280px;
+        height: 160px;
+        background: url('../assets/img/2.png') 50% 50% no-repeat;
+        border: 1px solid #f00;
+    }
+}

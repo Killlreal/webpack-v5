@@ -1,9 +1,11 @@
 @import './parts/fonts';
 @import '~normalize.css';
-@import '~bootstrap/scss/bootstrap';
 @import './parts/vars';
 @import './parts/rest';
+@import './parts/mixins';
 @import '../blocks/header/header';
 @import '../blocks/post/post';
+@import '../blocks/customers/customers';
+@import '../blocks/app/app';
 @import '../blocks/footer/footer';
 
