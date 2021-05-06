@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const fs = require("fs");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
 
 const PATHS = {
@@ -53,24 +53,27 @@ module.exports = {
                 },
             },
         },
-        minimizer: [new UglifyJsPlugin()],
+        minimizer: [new TerserPlugin()],
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"],
-                        plugins: [
-                            "@babel/plugin-proposal-object-rest-spread",
-                            "@babel/plugin-proposal-class-properties",
-                            "transform-regenerator",
-                        ],
+                use: [
+                    { loader: "cache-loader" },
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            presets: ["@babel/preset-env"],
+                            plugins: [
+                                "@babel/plugin-proposal-object-rest-spread",
+                                "@babel/plugin-proposal-class-properties",
+                                "transform-regenerator",
+                            ],
+                        },
                     },
-                },
+                ],
             },
             {
                 test: /\.vue$/,
@@ -84,14 +87,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    isDev
-                        ? "style-loader"
-                        : {
-                              loader: MiniCssExtractPlugin.loader,
-                              options: {
-                                  publicPath: "../",
-                              },
-                          },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: "../",
+                        },
+                    },
+                    "cache-loader",
                     "css-loader",
                     {
                         loader: "postcss-loader",
@@ -106,14 +108,13 @@ module.exports = {
             {
                 test: /\.s[ac]ss$/,
                 use: [
-                    isDev
-                        ? "style-loader"
-                        : {
-                              loader: MiniCssExtractPlugin.loader,
-                              options: {
-                                  publicPath: "../",
-                              },
-                          },
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: "../",
+                        },
+                    },
+                    "cache-loader",
                     "css-loader",
                     {
                         loader: "postcss-loader",
@@ -123,7 +124,12 @@ module.exports = {
                             },
                         },
                     },
-                    "sass-loader",
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
                 ],
             },
             {
@@ -138,7 +144,7 @@ module.exports = {
                         options: {
                             name: `${filename("[ext]")}`,
                             esModule: false,
-                            outputPath: 'assets/img',
+                            outputPath: "assets/img",
                         },
                     },
                 ],
@@ -156,7 +162,7 @@ module.exports = {
                                 enabled: false,
                             },
                             pngquant: {
-                                quality: [0.65 ,0.9],
+                                quality: [0.65, 0.9],
                                 speed: 4,
                             },
                             gifsicle: {
@@ -174,7 +180,7 @@ module.exports = {
                 loader: "file-loader",
                 options: {
                     name: "[name].[ext]",
-                    outputPath: 'assets/fonts',
+                    outputPath: "assets/fonts",
                 },
             },
         ],

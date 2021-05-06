@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: 'eval-cheap-source-map',
+    devtool: 'inline-source-map',
     target: 'web',
     module: {
         rules: [
