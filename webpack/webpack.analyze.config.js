@@ -1,10 +1,10 @@
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.config.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(common, {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    target: 'web',
+    mode: 'production',
+    target: 'browserslist',
     module: {
         rules: [
             {
@@ -17,22 +17,13 @@ module.exports = merge(common, {
                     },
                     // this applies to pug imports inside JavaScript
                     {
-                        use: ["pug-loader"]
+                        use: ["html-loader", "pug-html-loader"]
                     }
                 ],
             },
         ]
     },
-    devServer: {
-        contentBase: common.externals.paths.src,
-        historyApiFallback: true,
-        open: true,
-        compress: true,
-        // hot: true,
-        port: 8080,
-        overlay: {
-            warnings: false,
-            errors: true
-        },
-    },
+    plugins: [
+        new BundleAnalyzerPlugin()
+    ]
 });

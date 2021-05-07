@@ -9,6 +9,7 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const fs = require("fs");
 const TerserPlugin = require("terser-webpack-plugin");
 const StylelintPlugin = require("stylelint-webpack-plugin");
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 
 const PATHS = {
     index: path.join(__dirname, "../src/scripts/"),
@@ -27,6 +28,9 @@ const PAGES_DIR = `${PATHS.src}`;
 const PAGES = fs
     .readdirSync(PAGES_DIR)
     .filter((fileName) => fileName.endsWith(".pug"));
+
+
+const smp = new SpeedMeasurePlugin();
 
 module.exports = {
     externals: {
@@ -53,7 +57,9 @@ module.exports = {
                 },
             },
         },
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin({
+            parallel: true
+        })],
     },
     module: {
         rules: [
