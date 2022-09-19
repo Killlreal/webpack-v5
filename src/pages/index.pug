@@ -1,6 +1,10 @@
-extends templates/main
+extends templates/base
 
-block container 
-    main.main 
-        include ../blocks/post/post
-        include ../blocks/customers/customers
+
+block content 
+    .wrapper
+        include ../blocks/header/header
+
+        include ../blocks/home
+
+        include ../blocks/footer/footer

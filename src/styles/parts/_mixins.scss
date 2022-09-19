@@ -1,0 +1,105 @@
+@mixin placeholder {
+    ::input-placeholder {@content; }
+    :placeholder {@content; }
+    ::placeholder {@content; }
+    :input-placeholder {@content; }
+}
+
+@mixin font-size($size: inherit, $spacing: auto, $height: normal) {
+    font-size: $size;
+    line-height: $height;
+    letter-spacing: $spacing;
+}
+
+@mixin inc-click-area($px: 10px) {
+    position: relative;
+
+    &::after {
+        position: absolute;
+        top: -$px; right: -$px; bottom: -$px;
+        left: -$px;
+        content: "";
+    }
+}
+
+@mixin display-flex($direction: row, $align: flex-start, $justify: flex-start) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin w-from($screen) {
+    @media ( min-width: $screen ) {
+        @content;
+    }
+}
+
+@mixin w-to($screen) {
+    @media ( max-width: $screen - 1px ) {
+        @content;
+    }
+}
+
+@mixin for-desktop-up {
+    @media ( min-width: 1200px ) {
+        @content; 
+    }
+}
+
+@mixin w-range($screen1, $screen2) {
+    @media ( min-width: $screen1 ) and ( max-width: $screen2 - 1px ) {
+        @content;
+    }
+}
+
+@mixin aspect-ratio($width, $height) {
+    position: relative;
+
+    &::before {
+        display: block;
+        width: 100%;
+        padding-top: ($height / $width) * 100%;
+        content: "";
+    }
+
+    > picture > img,
+    > img,
+    > div {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+}
+
+@mixin hover() {
+    @media screen and ( pointer: fine ) {
+
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@mixin focus() {
+    @media screen and ( pointer: fine ) {
+
+        &:focus {
+            @content;
+        }
+    }
+}
+
+@mixin safari-only() {
+    @media not all and ( min-resolution: 0.001dpcm ) {
+        @supports (-webkit-appearance:none) and (stroke-color:transparent) {
+            @content;
+        }
+    }
+}

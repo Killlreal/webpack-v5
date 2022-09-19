@@ -1,7 +1,8 @@
-footer{
-    width: 100%;
-    height: 96px;
-    color: $footer;
-    background: $bg;
-    border: 1px solid #000;
+.footer{
+
+    &__content {
+        padding: 60px 0 80px;
+        background-color: $alto;
+    }
+
 }

@@ -3,7 +3,7 @@ module.exports = {
     plugins: ["stylelint-order", "stylelint-scss"],
     rules: {
         indentation: 4,
-        "string-quotes": "single",
+        "string-quotes": "double",
         "no-duplicate-selectors": true,
         "color-hex-case": "lower",
         "color-hex-length": "short",
@@ -21,7 +21,7 @@ module.exports = {
         "number-leading-zero": "always",
         "function-url-quotes": "always",
         "font-weight-notation": "numeric",
-        "font-family-name-quotes": "always-where-recommended",
+        "font-family-name-quotes": "always-unless-keyword",
         "comment-whitespace-inside": "always",
         "comment-empty-line-before": "always",
         "at-rule-no-vendor-prefix": true,
